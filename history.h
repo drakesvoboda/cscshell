@@ -4,8 +4,7 @@
 typedef struct _history history;
 
 struct _history {
-    unsigned capacity;
-    int head, size, event_number;
+    unsigned capacity,  head, size, event_number;
     char**events;
 };
 
@@ -13,10 +12,10 @@ history * create_history(unsigned);
 
 void add_event(history *, char *);
 
-history * change_capacity(history *, int);
+history * change_capacity(history *, unsigned);
 
-history * increase_capacity(history *, int);
+history * increase_capacity(history *, unsigned);
 
-history * decrease_capacity(history *, int);
+history * decrease_capacity(history *, unsigned);
 
 #endif

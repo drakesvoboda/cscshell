@@ -30,7 +30,7 @@ void add_event(history * hist, char * event){
         hist->head = 0;
 }
  
-history * change_capacity(history * hist, int capacity){
+history * change_capacity(history * hist, unsigned capacity){
     if(capacity < hist->capacity)
         return decrease_capacity(hist, capacity);
     else if(capacity > hist->capacity)
@@ -39,7 +39,7 @@ history * change_capacity(history * hist, int capacity){
         return hist;
 }
 
-history * increase_capacity(history * hist, int capacity){
+history * increase_capacity(history * hist, unsigned capacity){
     if(hist->capacity >= capacity)
         exit(EXIT_FAILURE);
 
@@ -65,7 +65,7 @@ history * increase_capacity(history * hist, int capacity){
     return new_hist;
 }
   
-history * decrease_capacity(history * hist, int capacity){
+history * decrease_capacity(history * hist, unsigned capacity){
     if(hist->capacity <= capacity || hist->capacity < 0)
         exit(EXIT_FAILURE);
 

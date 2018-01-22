@@ -4,26 +4,22 @@
 
 #define BUFF_SIZE 256
 
-char * cscsh_readline(void){
-    int bufsize = BUFF_SIZE;
+int cscsh_readline(char *buffer, int bufsize){
     int i = 0;
-    char *buffer = malloc(sizeof(char) * bufsize);
     char c;
-
-    if(!buffer){ exit(EXIT_FAILURE); }
 
     do{
         c = getchar();
 
         if(c == EOF || c == '\0' || c == '\n'){
             buffer[i] = '\0';
-            return buffer;
+            return 0;
         }
 
         buffer[i] = c;
         ++i;
     }while(i < bufsize);
 
-    return buffer;
+    return 0;
 }
 
