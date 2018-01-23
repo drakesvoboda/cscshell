@@ -6,6 +6,22 @@
 #include "environment.h"
 #include "history.h"
 
+int COMMAND_NOT_FOUND(char ** args){
+    printf("The \'%s\' command was not found\n", args[0]);
+    return 0;
+}
+
+int INVALID_ARGUMENTS(char ** args){
+    printf("The argument(s) \"");
+    for(int i = 0; args[i] != NULL; ++i){
+        if(i == 0) continue;
+        else if(i != 1) printf(" ");
+        printf("%s", args[i]);
+    }
+    printf("\" are invalid for the \'%s\' command\n", args[0]);
+    return 0;
+}
+
 const builtin builtins[] = {
     {"url", &URL},
     {"hour", &HOUR},
@@ -21,6 +37,7 @@ const builtin builtins[] = {
     {"tol", &TOL},
     {"toh", &TOH},
     {"tma", &TMA},
+    {"set", &SET},
     {"history", &HISTORY},
     {"help", &HELP},
     {"exit", &EXIT},
@@ -118,9 +135,25 @@ int HISTORY(char ** args, environment * env){
     return 0;
 }
 
-int COMMAND_NOT_FOUND(char ** args){
-    printf("The %s command was not found\n", args[0]);
+int SET(char ** args, environment * env){
+    if(!args[1] || !args[2])
+        return INVALID_ARGUMENTS(args);
+    
+    if(strcmp(args[1], "prompt") == 0)
+        set_prompt(env, args[2]);
+    else if(strcmp(args[1], "histlen") == 0){
+        int new_cap = strtol(args[2], NULL, 10);
+        if(new_cap > 0){
+            env->event_history = change_capacity(env->event_history, new_cap);
+        } else {
+            return INVALID_ARGUMENTS(args);
+        }
+    }
+    else
+        return INVALID_ARGUMENTS(args);
+        
     return 0;
+
 }
 
 int execute_builtin(char ** args, environment * env){

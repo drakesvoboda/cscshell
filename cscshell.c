@@ -5,8 +5,8 @@
 #include "environment.h"
 #include "history.h"
 
-#define INPUT_BUFFSIZE 256
-#define ARGS_BUFFSIZE 32
+#define INPUT_BUFFSIZE 128 
+#define ARGS_BUFFSIZE 16
 
 int main(int argc, char **argv)
 {
@@ -26,16 +26,16 @@ int main(int argc, char **argv)
         if(!buffer || !args)
             exit(EXIT_FAILURE);
 
-        buffsize = cscsh_readline(buffer, INPUT_BUFFSIZE); //Read line from user into buffer
+        buffsize = cscsh_readline(&buffer, INPUT_BUFFSIZE); //Read line from user into buffer
 
         copy = (char *) malloc(sizeof(char) * buffsize); //Freed by history
 
         if(!copy)
             exit(EXIT_FAILURE);
 
-        copy = memcpy(copy, buffer, sizeof(char) * buffsize); //Copy buffer before splitting 
+        strcpy(copy, buffer); //Copy buffer before splitting 
 
-        cscsh_tokenize(args, ARGS_BUFFSIZE, buffer); //Split buffer around arguments
+        cscsh_tokenize(&args, ARGS_BUFFSIZE, buffer); //Split buffer around arguments
 
         exit_code = execute_builtin(args, env);            
 

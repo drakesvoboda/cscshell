@@ -6,11 +6,12 @@
 typedef struct _environment environment;
 
 struct _environment {
-    char * prompt;
+    char prompt[64];
     history * event_history;
 };
 
 environment * create_environment(void);
+void set_prompt(environment *, const char *);
 void print_prompt(environment *);
 
 #endif

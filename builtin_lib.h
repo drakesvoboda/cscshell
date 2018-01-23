@@ -20,6 +20,7 @@ int TMA(char **, environment *);
 int HISTORY(char **, environment *);
 int HELP(char **, environment *);
 int EXIT(char **, environment *);
+int SET(char **, environment *);
 int execute_builtin(char **, environment *);
 
 #endif
