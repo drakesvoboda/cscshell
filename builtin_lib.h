@@ -3,23 +3,23 @@
 
 #include "environment.h"
 
-int URL(environment *);
-int HOUR(environment *);
-int ROOM(environment *);
-int DESP(environment *);
-int TEXT(environment *);
-int REF(environment *);
-int PROF(environment *);
-int POL(environment *);
-int POH(environment *);
-int PMA(environment *);
-int TA(environment *);
-int TOL(environment *);
-int TOH(environment *);
-int TMA(environment *);
-int HISTORY(environment *);
-int HELP(environment *);
-int EXIT(environment *);
-int execute_builtin(char *, environment *);
+int URL(char **, environment *);
+int HOUR(char **, environment *);
+int ROOM(char **, environment *);
+int DESP(char **, environment *);
+int TEXT(char **, environment *);
+int REF(char **, environment *);
+int PROF(char **, environment *);
+int POL(char **, environment *);
+int POH(char **, environment *);
+int PMA(char **, environment *);
+int TA(char **, environment *);
+int TOL(char **, environment *);
+int TOH(char **, environment *);
+int TMA(char **, environment *);
+int HISTORY(char **, environment *);
+int HELP(char **, environment *);
+int EXIT(char **, environment *);
+int execute_builtin(char **, environment *);
 
 #endif

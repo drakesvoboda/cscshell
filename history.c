@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "history.h"
 
 history * create_history(unsigned capacity){
@@ -14,12 +15,12 @@ history * create_history(unsigned capacity){
     hist->events = (char**) malloc(capacity * sizeof(char *));
     return hist;
 }
- 
+
 void add_event(history * hist, char * event){
     if(hist->size == hist->capacity)
         free(hist->events[hist->head]);
     else
-        hist->size = hist->size + 1;
+        ++hist->size;
 
     hist->events[hist->head] = event;
 
@@ -34,7 +35,7 @@ history * change_capacity(history * hist, unsigned capacity){
     if(capacity < hist->capacity)
         return decrease_capacity(hist, capacity);
     else if(capacity > hist->capacity)
-        return decrease_capacity(hist, capacity);
+        return increase_capacity(hist, capacity);
     else
         return hist;
 }
@@ -85,4 +86,16 @@ history * decrease_capacity(history * hist, unsigned capacity){
 
     return new_hist;
 }
-           
+
+void print_history(history * hist){
+    int i = 0;
+    if(hist->events[hist->head] != NULL)
+        i = hist->head;
+
+    for(int j = 0; j < hist->size; ++j){
+        puts(hist->events[i]);
+        ++i;
+        if(i >= hist->capacity)
+            i = 0;
+    }
+}

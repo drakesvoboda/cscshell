@@ -7,7 +7,7 @@ typedef struct _builtin builtin;
 
 struct _builtin {
     const char *command;
-    int (*const func)(environment *);
+    int (*const func)(char**, environment *);
 };  
 
 #endif
