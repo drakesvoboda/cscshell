@@ -18,11 +18,13 @@ make
 ```
 ## Commands to try in cscshell
 ```
+help
 url
 text
 history
 set prompt <%h>
 set histlen 50
+quit
 ```
 
 ## To Run Tests
