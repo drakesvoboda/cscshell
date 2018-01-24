@@ -1,1 +1,0 @@
-/usr/bin/cc     CMakeFiles/cscshell.dir/src/cscshell.c.o  -o cscshell -rdynamic ../src/cscsh_readline.c ../src/history.c ../src/builtin_lib.c ../src/environment.c 

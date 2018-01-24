@@ -1,5 +1,0 @@
-/home/drake/csc4420/hw1/cscshell/build/CMakeFiles/test.dir
-/home/drake/csc4420/hw1/cscshell/build/CMakeFiles/cscshell.dir
-/home/drake/csc4420/hw1/cscshell/build/CMakeFiles/runUnitTests.dir
-/home/drake/csc4420/hw1/cscshell/build/CMakeFiles/rebuild_cache.dir
-/home/drake/csc4420/hw1/cscshell/build/CMakeFiles/edit_cache.dir

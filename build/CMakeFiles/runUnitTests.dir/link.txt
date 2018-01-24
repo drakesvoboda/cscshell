@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/runUnitTests.dir/spec/history_spec.cpp.o CMakeFiles/runUnitTests.dir/spec/environment_spec.cpp.o  -o runUnitTests -rdynamic /usr/lib/libgtest.a /usr/lib/libgtest_main.a /usr/lib/libgtest.a -lpthread 
