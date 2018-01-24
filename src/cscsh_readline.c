@@ -1,9 +1,6 @@
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
 #include "cscsh_readline.h"
-
-#define DELIMITER " \t"
 
 int cscsh_readline(char **buffer, unsigned INPUT_BUFFSIZE){
     unsigned buffsize = INPUT_BUFFSIZE;
@@ -31,27 +28,4 @@ int cscsh_readline(char **buffer, unsigned INPUT_BUFFSIZE){
     }while(1);
     
     return buffsize;
-}
-
-int cscsh_tokenize(char *** tokens, unsigned ARGS_BUFFSIZE, char * string){
-    unsigned buffsize = ARGS_BUFFSIZE;
-    unsigned i = 0;
-    char * token = strtok(string, DELIMITER);
-
-    while(token){
-        (*tokens)[i] = token;
-        ++i;
-
-        if(i >= buffsize){
-            buffsize += ARGS_BUFFSIZE;
-            *tokens = (char **) realloc(*tokens, buffsize);
-            if(!(*tokens))
-                exit(EXIT_FAILURE);
-        }
-
-        token = strtok(NULL, DELIMITER);
-    }
-
-    (*tokens)[i] = NULL;
-    return buffsize;   
 }

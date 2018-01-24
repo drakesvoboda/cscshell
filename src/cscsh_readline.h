@@ -3,7 +3,5 @@
 
 int cscsh_readline(char **, unsigned);
 
-int cscsh_tokenize(char ***, unsigned, char*);
-
 #endif
 

@@ -3,6 +3,7 @@
 #include "cscsh_readline.h"
 #include "environment.h"
 #include "history.h"
+#include "cscsh_string.h"
 
 #define INPUT_BUFFSIZE 128 
 #define ARGS_BUFFSIZE 16

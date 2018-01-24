@@ -3,7 +3,6 @@ project (cscshell C CXX)
 
 # location of header files
 include_directories(
-    ${PROJECT_BINARY_DIR}
     ${PROJECT_SOURCE_DIR}/src
 )
 

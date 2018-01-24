@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "cscsh_string.h"
 #include "history.h"
 
 int increment_index(history * hist, int index){
@@ -11,6 +12,16 @@ int increment_index(history * hist, int index){
 
     return index;
 }
+
+int increment_index_range(history * hist, int index, int distance){
+    index += distance;
+
+    if(index >= hist->capacity)
+        index = index - hist->capacity;
+
+    return index;
+}
+
 
 history * create_history(unsigned capacity){
     if(capacity < 0)
@@ -24,29 +35,6 @@ history * create_history(unsigned capacity){
     hist->size = 0;
 
     return hist;
-}
-
-char * deep_copy(char * buffer, unsigned INPUT_BUFFSIZE){
-    unsigned buffsize = INPUT_BUFFSIZE;
-    char * copy = (char *) malloc(sizeof(char) * buffsize);
-
-    if(!copy)
-        exit(EXIT_FAILURE);
-
-    unsigned i = 0;
-    while(buffer[i] != '\0'){
-        copy[i] = buffer[i];
-        ++i;
-        if(i >= buffsize){
-            buffsize += INPUT_BUFFSIZE;
-            copy = (char *) realloc(buffer, buffsize * sizeof(char));
-
-            if(!copy)
-                exit(EXIT_FAILURE);
-        }
-    }
-
-    return copy;
 }
 
 void add_event(history * hist, char * buffer, unsigned INPUT_BUFFSIZE){
@@ -110,7 +98,7 @@ void decrease_capacity(history ** hist, unsigned capacity){
 
     new_hist->head = 0;
     
-    int i = (*hist)->head + (*hist)->capacity - new_hist->capacity;
+    int i = increment_index_range((*hist), (*hist)->head, (*hist)->capacity - new_hist->capacity);
     
     do{
         if(i < (*hist)->size){
@@ -120,7 +108,7 @@ void decrease_capacity(history ** hist, unsigned capacity){
         }
 
         i = increment_index((*hist), i);
-    }while(i != (*hist)->head);
+    }while(i != (*hist)->head && new_hist->size <= new_hist->capacity);
 
     destroy_history(hist);
     *hist = new_hist;

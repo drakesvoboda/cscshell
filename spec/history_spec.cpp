@@ -1,7 +1,9 @@
 #define TESTING
 #include <gtest/gtest.h>
 
-#include <history.c>
+#include "cscsh_string.c" //history dependency
+
+#include "history.c"
 
 TEST(History, CanBeCreated){
     history * hist = create_history(10);

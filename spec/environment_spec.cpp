@@ -2,7 +2,7 @@
 
 #define TESTING
 
-#include <environment.c>
+#include "environment.c"
 
 class TestEnvironment : public ::testing::Test{
     protected:
