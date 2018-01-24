@@ -10,13 +10,15 @@ struct _history {
 
 history * create_history(unsigned);
 
-void add_event(history *, char *);
+void add_event(history *, char *, unsigned);
 
-history * change_capacity(history *, unsigned);
+void change_capacity(history **, unsigned);
 
-history * increase_capacity(history *, unsigned);
+void increase_capacity(history **, unsigned);
 
-history * decrease_capacity(history *, unsigned);
+void decrease_capacity(history **, unsigned);
+
+void destroy_history(history **);
 
 void print_history(history *);
 

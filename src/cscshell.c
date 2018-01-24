@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 #include "builtin_lib.h"
 #include "cscsh_readline.h"
 #include "environment.h"
@@ -12,9 +11,8 @@ int main(int argc, char **argv)
 {
     environment * env = create_environment();
     int exit_code;
-    int buffsize;
+    unsigned buffsize;
     char * buffer;
-    char * copy;
     char ** args;
 
     do{
@@ -26,24 +24,21 @@ int main(int argc, char **argv)
         if(!buffer || !args)
             exit(EXIT_FAILURE);
 
-        buffsize = cscsh_readline(&buffer, INPUT_BUFFSIZE); //Read line from user into buffer
+        buffsize = cscsh_readline(&buffer, INPUT_BUFFSIZE);
+        
+        if(buffer[0] != '\0'){
+            add_event(env->event_history, buffer, buffsize);
 
-        copy = (char *) malloc(sizeof(char) * buffsize); //Freed by history
+            cscsh_tokenize(&args, ARGS_BUFFSIZE, buffer);
 
-        if(!copy)
-            exit(EXIT_FAILURE);
-
-        strcpy(copy, buffer); //Copy buffer before splitting 
-
-        cscsh_tokenize(&args, ARGS_BUFFSIZE, buffer); //Split buffer around arguments
-
-        exit_code = execute_builtin(args, env);            
-
-        add_event(env->event_history, copy); //Add copy to history, history will free the copy
+            exit_code = execute_builtin(args, env);            
+        }
 
         free(buffer);
         free(args);
     }while(!exit_code);
+
+    destroy_environment(&env);
 
     exit(EXIT_SUCCESS);
 }

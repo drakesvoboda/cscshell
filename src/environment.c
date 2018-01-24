@@ -8,7 +8,7 @@ environment * create_environment(void){
     environment * env = (environment *) malloc(sizeof(environment));
     strcpy(env->prompt, "-->"); 
     env->prompt[63] = '\0'; // prompt will always be null-terminated if any of the first 63 characters are replaced 
-    env->event_history = create_history(2);
+    env->event_history = create_history(20);
     return env;
 }
 
@@ -38,3 +38,8 @@ void set_prompt(environment * env, const char * new_prompt){
     strncpy(env->prompt, new_prompt, 63); 
 }
 
+void destroy_environment(environment ** env){
+    destroy_history(&((*env)->event_history));
+    free(*env);
+    *env = NULL;
+}

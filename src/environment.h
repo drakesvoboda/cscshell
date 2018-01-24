@@ -11,6 +11,7 @@ struct _environment {
 };
 
 environment * create_environment(void);
+void destroy_environment(environment **);
 void set_prompt(environment *, const char *);
 void print_prompt(environment *);
 

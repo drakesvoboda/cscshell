@@ -144,7 +144,7 @@ int SET(char ** args, environment * env){
     else if(strcmp(args[1], "histlen") == 0){
         int new_cap = strtol(args[2], NULL, 10);
         if(new_cap > 0){
-            env->event_history = change_capacity(env->event_history, new_cap);
+            change_capacity(&(env->event_history), new_cap);
         } else {
             return INVALID_ARGUMENTS(args);
         }
