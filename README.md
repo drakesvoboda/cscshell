@@ -10,7 +10,7 @@ make
 ```
 
 ## To Run Tests
-Once you have compiled the source code using CMake, you can execute the unit tests
+Once you have compiled the source code, you can execute the unit tests
 ```
 make test
 ```

@@ -50,7 +50,8 @@ TEST(History, CanAddMoreEventsThanItsCapacity){
     ASSERT_STREQ("event 2", hist->events[1]);
     destroy_history(&hist);
 }
-TEST(HistoryCapacity, CanIncreaseWhenTheOldSizeIsGreaterThanTheOldCapacity){
+
+TEST(HistoryCapacity, CanIncreaseWhenOldSizeIsGreaterThanOldCapacity){
     history * hist = create_history(3);
     char * event1 = "event 1";
     char * event2 = "event 2";
@@ -73,7 +74,7 @@ TEST(HistoryCapacity, CanIncreaseWhenTheOldSizeIsGreaterThanTheOldCapacity){
     destroy_history(&hist);
 }
 
-TEST(HistoryCapacity, CanIncreaseWhenTheOldSizeIsLessThanTheOldCapacity){
+TEST(HistoryCapacity, CanIncreaseWhenOldSizeIsLessThanOldCapacity){
     history * hist = create_history(3);
     char * event1 = "event 1";
     char * event2 = "event 2";
@@ -92,7 +93,7 @@ TEST(HistoryCapacity, CanIncreaseWhenTheOldSizeIsLessThanTheOldCapacity){
     destroy_history(&hist);
 }
 
-TEST(HistoryCapacity, CanDecreaseWhenTheNewCapacityIsGreaterThanTheOldSize){
+TEST(HistoryCapacity, CanDecreaseWhenNewCapacityIsGreaterThanOldSize){
     history * hist = create_history(10);
     char * event1 = "event 1";
     char * event2 = "event 2";
@@ -115,7 +116,7 @@ TEST(HistoryCapacity, CanDecreaseWhenTheNewCapacityIsGreaterThanTheOldSize){
     destroy_history(&hist);
 }
 
-TEST(HistoryCapacity, CanDecreaseWhenTheNewCapacityIsLessThanTheOldSize){
+TEST(HistoryCapacity, CanDecreaseWhenNewCapacityIsLessThanOldSize){
     history * hist = create_history(4);
     char * event1 = "event 1";
     char * event2 = "event 2";
@@ -138,7 +139,7 @@ TEST(HistoryCapacity, CanDecreaseWhenTheNewCapacityIsLessThanTheOldSize){
     destroy_history(&hist);
 }
 
-TEST(HistoryCapacity, CanDecreaseWhenTheNewCapacityIsEqualToTheOldSize){
+TEST(HistoryCapacity, CanDecreaseWhenNewCapacityIsEqualToOldSize){
     history * hist = create_history(10);
     char * event1 = "event 1";
     char * event2 = "event 2";
