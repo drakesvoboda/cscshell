@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "builtin_lib.h"
 #include "builtin.h"
 #include "environment.h"
@@ -163,6 +166,17 @@ int execute_builtin(char ** args, environment * env){
             return (builtins[i].func)(args, env);
         }
     }
-
-    return COMMAND_NOT_FOUND(args);
+    
+    int pid;
+    if ((pid = fork()) == -1)
+        exit(EXIT_FAILURE);
+    else if (pid == 0) {
+        if (execvp(args[0], args) == -1) {
+            COMMAND_NOT_FOUND(args);
+            exit(EXIT_FAILURE);
+        }
+    } else {
+        wait(NULL);
+        return 0;
+    }
 }

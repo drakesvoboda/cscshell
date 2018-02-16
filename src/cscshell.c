@@ -27,7 +27,8 @@ int main(int argc, char **argv)
 
         buffsize = cscsh_readline(&buffer, INPUT_BUFFSIZE);
         
-        if(buffer[0] != '\0'){
+        if(buffer[0] != '\0') //The buffer is not empty
+        {
             add_event(env->event_history, buffer, buffsize);
 
             cscsh_tokenize(&args, ARGS_BUFFSIZE, buffer);

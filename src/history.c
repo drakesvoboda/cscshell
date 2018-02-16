@@ -5,21 +5,11 @@
 #include "history.h"
 
 int increment_index(history * hist, int index){
-    ++index;
-
-    if(index >= hist->capacity)
-        index = 0;
-
-    return index;
+    return (index + 1) % hist->capacity;
 }
 
 int increment_index_range(history * hist, int index, int distance){
-    index += distance;
-
-    if(index >= hist->capacity)
-        index = index - hist->capacity;
-
-    return index;
+    return (index + distance) % hist->capacity;
 }
 
 
